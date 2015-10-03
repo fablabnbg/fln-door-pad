@@ -28,6 +28,7 @@ int timeout;  // timeout variable used in loop
 int lastkeypadStatus = 0;
 long lastDebounceTime = 0;
 boolean serial;
+char layout[16] = {'1','2','3','A','4','5','6','B','7','8','9','C','*','0','#','D'};;
 
 
 void setup(){
@@ -40,12 +41,13 @@ void setup(){
   if(digitalRead(0) == LOW){
     Keyboard.begin();
     serial = false;
-    const char layout[16] = {'1','2','3','A','4','5','6','B','7','8','9','C',8,'0','\n','D'}; //layout with * as BACKSPACE and # as RETURN
+    // use * as BACKSPACE and # as RETURN
+    layout[12] = 8;
+    layout[14] = '\n';
   }
   else {
     Serial.begin(9600);
     serial = true;
-    const char layout[16] = {'1','2','3','A','4','5','6','B','7','8','9','C','*','0','#','D'};
   }
 }
 
